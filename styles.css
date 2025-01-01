@@ -1,0 +1,415 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Calibri;
+}
+:root{
+    --Almost-White: rgb(250, 250, 250);
+    --Medium-Gray: rgb(112, 112, 153);
+    --Almost-Black: rgb(20, 20, 20);
+
+    --body-bg-dark: rgb(12, 12, 17);
+    --box-bg-dark: rgb(28, 27, 56);
+    --box-hover-bg-dark: rgb(40, 40, 63);
+
+    /* --green: rgb(0, 94, 0);
+    --red: rgb(187, 0, 0); */
+    --arrow-green: rgb(30, 181, 137);
+    --arrow-red: rgb(220, 65, 76);
+
+    --fb-blue: rgb(23, 143, 245);
+    --twitter-blue: rgb(29, 161, 242);
+    --youtube-red: rgb(196, 3, 43); 
+    --instagram-pink: rgb(223, 72, 150);
+    --instagram-gradient: linear-gradient(
+        to right,
+        rgb(223, 72, 150), 
+        rgb(238, 135, 126), 
+        rgb(253, 195, 102)
+    );
+
+    --my-trans: all 0.3s ease-in-out;
+}
+
+/* utils */
+.capitalize{
+    text-transform: capitalize;
+}
+.text-align{
+    text-align: center;
+}
+.border-top{
+    border-top: 4px solid;
+}
+
+.follower-number{
+    font-size: 50px;
+    font-weight: 900;
+    color: var(--Almost-White);
+}
+.follower-number-description{
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--Medium-Gray);
+}
+/* end of utils */
+
+
+/* active class for theme toggling */
+body.active{
+    --body-bg-dark: #f0f0f0;
+    --Almost-Black: rgb(20, 20, 20);
+
+    
+    --box-hover-bg-dark: rgb(28, 27, 56);
+}
+
+.follower-number.active{
+    --font-dark: rgb(12, 12, 17);
+    color: var(--font-dark);
+}
+#todayHeading.active{
+    color: var(--Medium-Gray);
+}
+h2.active,
+.today-title h1.active,
+p:not([class="update-green"]).active,
+p:not([class="update-red"]).active{
+    --Medium-Gray: rgb(65, 65, 87);
+}
+.summary-box.active,
+.today-box.active{
+    --box-bg-dark: rgb(179, 177, 219);
+}
+.summary-box.active:hover,
+.today-box.active:hover{
+    --box-hover-bg-dark: rgb(207, 207, 212);
+}
+
+body{
+    min-height: 100vh;
+    background: var(--body-bg-dark);
+
+    transition: var(--my-trans);
+}
+body::-webkit-scrollbar{
+    width: 10px;
+}
+body::-webkit-scrollbar-track{
+    background: white;
+}
+body::-webkit-scrollbar-thumb{
+    background: var(--box-bg-dark);
+}
+.update-green img,
+.update-red img{
+    width: 14px;
+}
+
+
+/* ===================== SUMMARY SECTION ========================== */
+
+.summary,
+.today{
+    padding: 20px;
+}
+
+/* title */
+.title-container{
+    margin-bottom: 20px;
+}
+.title{
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--Medium-Gray);
+}
+.title h1{
+    color: var(--Almost-White);
+}
+#summaryHeading.active{
+    --font-dark: rgb(12, 12, 17);
+    color: var(--font-dark);
+}
+.title h2,
+.theme p{
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--Medium-Gray);
+}
+
+/* dark-mode */
+.theme{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+.theme .bar{
+    width: 45px;
+    height: 25px;
+    background: linear-gradient(to right, var(--fb-blue), var(--twitter-blue));
+    border-radius: 100vmax;
+    cursor: pointer;
+    position: relative;
+}
+.theme .bar .theme-toggler{
+    width: 21px;
+    height: 21px;
+    background: var(--body-bg-dark);
+    border-radius: 100vmax;
+
+    position: absolute;
+    top: 2px;
+    left: 2px;
+
+    transition: var(--my-trans);
+}
+.theme-toggler.active{
+    margin-left: 20px;
+}
+
+/* summary box */
+.summary-box{
+    background-color: var(--box-bg-dark);
+    padding: 30px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    cursor: pointer;
+    transition: var(--my-trans);
+}
+.summary-box:hover,
+.today-box:hover{
+    background-color: var(--box-hover-bg-dark);
+}
+.user,
+.update-green,
+.update-red{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.user>*{
+    flex-shrink: 0;
+}
+.user p{
+    font-size: 18px;
+    color: var(--Medium-Gray);
+}
+.update-green p{
+    color: var(--arrow-green);
+    font-weight: bold;
+    font-size: 17px;
+}
+.update-red p{
+    color: var(--arrow-red);
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.facebook-box{
+    border-color: var(--fb-blue);
+}
+.twitter-box{
+    border-color: var(--twitter-blue);
+}
+.instagram-box{
+    position: relative;
+    border: 0;
+}
+.instagram-box::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--instagram-gradient);
+    border-radius: 5px 5px 0 0;
+}
+.youtube-box{
+    border-color: var(--youtube-red);
+}
+
+/* =================== TODAY CONTAINER ====================== */
+
+.today-title{
+    border: none;
+}
+.today-box{
+    background: var(--box-bg-dark);
+    border-radius: 5px;
+    padding: 30px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    transition: var(--my-trans);
+}
+.today-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.today-box-description{
+    margin-bottom: 30px;
+}
+.today-box-description p{
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--Medium-Gray);
+}
+.today-box-value h3{
+    font-size: 30px;
+    color: var(--Almost-White);
+}
+
+
+/* media queries */
+
+@media(min-width: 600px) {
+    .summary-container,
+    .today-container{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+    }
+    .summary-box,
+    .today-box{
+        margin-bottom: unset;
+        /* ============
+            50% = 100% / No. of boxes in a line
+
+           10px = [(gap = 20px) / No. of boxes in a line * No. of gaps in a line
+          ============= 
+        */
+        width: calc(50% - 16px);
+    }
+    .summary,
+    .today{
+        padding: 30px 50px;
+    }
+    .title h1{
+        font-size: 40px;
+        padding-bottom: 5px;
+    }
+    .title h2,
+    .theme p,
+    .user p,
+    .follower-number-description,
+    .update-green p,
+    .update-red p,
+    .today-box-description p{
+        font-size: 24px;
+    }
+    .follower-number{
+        font-size: 70px;
+    }
+    .today-box-value h3{
+        font-size: 36px;
+    }
+    .theme .bar{
+        width: 50px;
+    }
+    .theme-toggler.active{
+        margin-left: 25px;
+    }
+}
+@media(min-width: 768px) {
+    .summary,
+    .today{
+        padding: 50px 60px;
+    }
+}
+@media(min-width: 992px) {
+    .summary-box,
+    .today-box{
+        width: calc(25% - 24px);
+    }
+    .title-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .title{
+        border: none;
+    }
+    .theme{
+        gap: 10px;
+    }
+}
+@media(min-width: 1200px) {
+    .summary,
+    .today{
+        padding: 50px 100px;
+    }
+    .user img,
+    .today-box-description img{
+        width: 30px;
+    }
+    .title h1{
+        font-size: 60px;
+        padding-bottom: 10px;
+    }
+    .title h2,
+    .theme p,
+    .user p,
+    .follower-number-description,
+    .update-green p,
+    .update-red p,
+    .today-box-description p{
+        font-size: 28px;
+    }
+    .today-box-value h3{
+        font-size: 40px;
+    }
+    .theme .bar{
+        height: 30px;
+        width: 60px;
+    }
+    .theme .bar .theme-toggler{
+        height: 26px;
+        width: 26px;
+    }
+    .theme-toggler.active{
+        margin-left: 30px;
+    }
+}
+@media(min-width: 1440px) {
+    .summary,
+    .today{
+        padding: 60px 120px;
+    }
+    .title h1{
+        font-size: 70px;
+    }
+    .title h2,
+    .theme p,
+    .user p,
+    .follower-number-description,
+    .update-green p,
+    .update-red p,
+    .today-box-description p{
+        font-size: 36px;
+    }
+    .today-box-value h3{
+        font-size: 44px;
+    }
+    .theme .bar{
+        height: 35px;
+        width: 72px;
+    }
+    .theme .bar .theme-toggler{
+        height: 31px;
+        width: 31px;
+    }
+    .theme-toggler.active{
+        margin-left: 37px;
+    }
+}
